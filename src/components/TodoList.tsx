@@ -1,13 +1,12 @@
 import React from "react";
+import { IItem } from "../types/todo";
 
 
-interface IItem{
-    id: string,
-    title:string
-}
+
 
 interface IProps{
-    todos:IItem[]
+    todos: IItem[],
+    onRemoveTodo:(id:string)=>void
 }
 
 
@@ -17,7 +16,8 @@ const TodoList: React.FC<IProps> = (props) => {
             {props.todos.map((item) => {
                 return <li key={item.id}>
                     <div>{ item.id}</div>
-                    <div>{ item.title}</div>
+                    <div>{item.title}</div>
+                    <button onClick={props.onRemoveTodo.bind(this,item.id)}>Delete</button>
                 </li>
             })}
         </ul>
